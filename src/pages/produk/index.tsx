@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
+import TampilanProduk from "../../views/produk";
 const produk = () => {
     const [isLogin, setIsLogin] = useState(false); // Simulasi status login [cite: 463, 464]
     const { push } = useRouter(); // [cite: 466, 467]
@@ -23,4 +23,6 @@ const produk = () => {
     );
 };
 
-export default produk;
+export default function Produk() {
+  return <TampilanProduk />;
+}
