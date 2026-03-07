@@ -8,10 +8,10 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <div>
-      
-      <h1>Praktikum Next.js Pages Router</h1> <br />
-      <p>Mahasiswa D4 Pengembangan Web</p> <br />
-      <a href="/about" >About</a>
+      <p>Adnan Arju Maulana Pasha</p><br />
+      <p>2341720107</p> <br />
+      <p>D4 Teknik Informatika</p><br />
+      <a href="/" >Home</a>
     </div>
   )
 }
