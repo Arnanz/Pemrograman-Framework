@@ -1,0 +1,47 @@
+.error {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    /* Tugas 2: Custom warna, font, dan layout */
+    background-color: #f8f9fa; /* Warna latar belakang */
+    font-family: sans-serif; /* Custom font */
+    text-align: center;
+    padding: 20px;
+
+    &_image {
+        width: 300px;
+        margin-bottom: 2rem;
+    }
+
+    /* Styling untuk elemen h1 dan p bawaan */
+    h1 {
+        font-size: 2.5rem;
+        color: #333; /* Warna teks judul */
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+        color: #666; /* Warna teks deskripsi */
+        margin-bottom: 2rem;
+    }
+
+    /* Styling untuk tombol Kembali ke Home */
+    .button {
+        padding: 12px 24px;
+        background-color: #0070f3; /* Warna biru khas Next.js */
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+            background-color: #005bb5; /* Efek hover saat kursor diarahkan ke tombol */
+        }
+    }
+}
