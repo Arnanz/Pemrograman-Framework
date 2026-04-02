@@ -1,59 +1,30 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import TampilanProduk from "../../views/produk";
+import useSWR from "swr";
+import fetcher from "../utils/swr/fetcher";
 
 type ProductType = {
-  id : string;
-  name : string;
-  price : number;
-  size : string;
-  category : string;
-}
-
-const kategori = () => {
-    //const [isLogin, setIsLogin] = useState(false);
-    //const {push} = useRouter();
-    const [products, setProducts] = useState<ProductType[]>([]);
-
-    const fetchProduk = () => {
-        fetch("/api/produk")
-            .then((response) => response.json())
-            .then((responsedata) => {
-                setProducts(responsedata.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching produk:", error);
-            });
-    };
-
-    useEffect(() => {
-        fetch("/api/produk")
-            .then((response) => response.json())
-            .then((responsedata) => {
-                setProducts(responsedata.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching produk:", error);
-            });
-    }, []);
-
-    return (
-        <div>
-            <h1>Daftar Produk</h1>
-            <button 
-                onClick={fetchProduk} 
-                style={{ padding: "8px 16px", marginBottom: "20px", cursor: "pointer" }}>
-                Refresh Data
-            </button>
-            {products.map((products: ProductType) => (
-                <div key={products.id} style={{ marginBottom: "15px", borderBottom: "1px solid #eee", paddingBottom: "10px" }}>
-                    <h2>{products.name}</h2>
-                    <p>Harga: {products.price}</p>
-                    <p>Ukuran: {products.size}</p>
-                    <p>Kategori: {products.category}</p>
-                </div>
-            ))}
-        </div>
-    );
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  category: string;
 };
 
-export default kategori;
+const Kategori = () => {
+  const { data, error, isLoading } = useSWR<{ data: ProductType[] }>(
+    "/api/produk",
+    fetcher
+  );
+
+  if (error) return <div>Gagal memuat data</div>;
+
+  return (
+    <div>
+      <TampilanProduk
+        products={isLoading ? [] : data?.data || []}
+      />
+    </div>
+  );
+};
+
+export default Kategori;
