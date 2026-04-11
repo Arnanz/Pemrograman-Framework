@@ -1,28 +1,22 @@
+import { useRouter } from "next/router";
+import { useEffect, useState }  from "react";
 import TampilanProduk from "../../views/produk";
 import useSWR from "swr";
 import fetcher from "../../utils/swr/fetcher";
 
-type ProductType = {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  category: string;
-};
-
 const Kategori = () => {
-  const { data, error, isLoading } = useSWR<{ data: ProductType[] }>(
-    "/api/produk",
-    fetcher
-  );
+  const { push } = useRouter();
+  
+  // Memanggil API menggunakan SWR
+  const { data, error, isLoading } = useSWR("/api/produk", fetcher);
 
-  if (error) return <div>Gagal memuat data</div>;
+  // Menangani kondisi error (opsional tapi disarankan)
+  if (error) return <div>Gagal memuat data produk.</div>;
 
   return (
     <div>
-      <TampilanProduk
-        products={isLoading ? [] : data?.data || []}
-      />
+      {/* Menggunakan optional chaining (?.) untuk menghindari crash jika data belum ada */}
+      <TampilanProduk products={isLoading ? [] : data.data || []} />
     </div>
   );
 };
