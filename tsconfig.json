@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/pages/shop/[[...slug]].tsx"
-  ],
+, "src/views/auth/register/index.tsx", "src/pages/auth/register.jsx"  ],
   "exclude": [
     "node_modules"
   ]
